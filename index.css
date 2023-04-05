@@ -60,7 +60,7 @@ html, body{
 
 /* Renderiza cabeçalho. */
 #wrap > header {
-    background-color:rgba(255, 255, 255, 0.164);
+   background-color: rgba(0, 0, 0, 0.7);
     margin: .5rem;
     border-radius: .75rem;
     display: flex;
@@ -69,18 +69,25 @@ html, body{
 }
 #wrap > header a{
     font-size: 4rem;
-    padding: 0 .5rem;
+    padding: 0.3rem;
 }
 
 #wrap > header i{
     display: block;
-    transition: 0.2s;
+  color: #ddd;
+  background-image: linear-gradient(to left,rgb(126, 107, 1),rgb(61, 57, 0), rgb(44, 38, 0));
+  border-radius: 0.5rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  padding-left: .2rem;
+  padding-top: .2rem;
 }
 #wrap > header h1{
     margin: 0;
+    padding-left: .3rem;
     text-align: center;
-    letter-spacing: 0.25rem;
-    color: rgb(0, 0, 0);
+    letter-spacing: 0.12rem;
+    color: white;
 }
 #wrap > header h1 small {
     display: block;
@@ -92,8 +99,7 @@ html, body{
 /* Menu principal. */
 
 #wrap > nav{
-    background-color: black;
-    border: 1px dotted grey;
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: .35rem;
     margin: 0 .5rem .5rem .5rem;
     display: flex;
@@ -113,8 +119,9 @@ html, body{
     margin-right: auto;
 }
 #wrap >nav a:hover{
-    color: white;
-    background-color: rgb(77, 77, 77);
+    color: black;
+    background-color: white;
+    border-radius: 0.35rem;
 }
 #wrap > nav a i{
     font-size: 2rem;
@@ -146,7 +153,7 @@ html, body{
 
 /* Rodapé */
 #wrap> footer{
-    background-color: grey;
+    background-color: rgb(70,70,70);
     border: 1px dotted grey;
     margin: .5rem;
     border-radius: .5rem;
@@ -162,13 +169,14 @@ html, body{
     align-items: center;
 }
 .footer-top a{
-    color: #ddd;
+    color: darkgray;
     font-size: 1.5rem;
     padding: .25rem;
     transition: 0.2s;
+    border-radius: 0.5rem;
 }
 .footer-top a:hover{
-    background-color: rgb(77, 77, 77);
+    background-color: rgba(0, 0, 0, 0.377);
     color: white;
 
 }
@@ -208,6 +216,77 @@ html, body{
 }
 
 /* Em larguras maiores (mobile friendly). */
-@media screen and (min-width: 575px){
+@media screen and (min-width: 480px){
+    /* Menu Principal adequado para celular a partir de 480px de largura. */
+    #wrap > nav{
+        justify-content:space-between;
+    }
     
+    #wrap > nav a{
+        flex-direction: row;
+    }
+    #wrap > nav a:first-child{
+        margin-right: 0;
+    }
+    #wrap > nav a i{
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+        margin-right: 0.6rem;
+    }
+}
+
+@media screen and (min-width: 768px){
+    /* Mudança do Layout da página em relação às postagens a partie de 768 pixels (desktop).*/
+    #wrap > main{
+        flex-direction: row;
+    }    
+    
+    #wrap > main > aside{
+        margin-top: 0;
+        border: 1px dotted;
+        margin-left: 0.5rem;
+        min-width: 220px;
+        max-width: 220px;
+    }
+    
+    
+}
+
+#gadgets {
+    background-color: rgba(255, 255, 255, 0.1);
+    position: fixed;
+    z-index: 100px;
+    right: 0;
+    top: 200px;
+    border-radius: .5rem 0 0 .5rem;   
+}
+
+#gadgets ul{
+    list-style: none;
+
+
+}
+
+#gadgets a{
+    color: black;
+    font-size: 1.5rem;
+}
+#gadgets li.fb i:hover{
+    background-color: #4267B2;
+    color: white;
+    transition: 0.2s;
+    border-radius: .4rem;
+}
+#gadgets li.tw i:hover{
+    background-color: #1DA1F2;
+    color: white;
+    transition: 0.2s;
+    border-radius: 0.4rem;
+}
+
+#gadgets li.git i:hover{
+    background-color: #6e5494;
+    color: white;
+    transition: 0.2s;
+    border-radius: 0.4rem;
 }
