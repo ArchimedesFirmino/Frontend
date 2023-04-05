@@ -53,12 +53,14 @@ html, body{
     width: 100%;
     max-width: 1024px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
     
 }
 
 /* Renderiza cabeçalho. */
 #wrap > header {
-    background-color:white;
+    background-color:rgba(255, 255, 255, 0.164);
     margin: .5rem;
     border-radius: .75rem;
     display: flex;
@@ -69,6 +71,143 @@ html, body{
     font-size: 4rem;
     padding: 0 .5rem;
 }
+
+#wrap > header i{
+    display: block;
+    transition: 0.2s;
+}
 #wrap > header h1{
     margin: 0;
+    text-align: center;
+    letter-spacing: 0.25rem;
+    color: rgb(0, 0, 0);
+}
+#wrap > header h1 small {
+    display: block;
+    font-weight: normal;
+    font-size: .8rem;
+    letter-spacing: normal;
+}
+
+/* Menu principal. */
+
+#wrap > nav{
+    background-color: black;
+    border: 1px dotted grey;
+    border-radius: .35rem;
+    margin: 0 .5rem .5rem .5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#wrap > nav a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: .65rem .75rem;
+    color: #ddd;
+    transition: .2s;
+    
+}
+#wrap > nav a:first-child{
+    margin-right: auto;
+}
+#wrap >nav a:hover{
+    color: white;
+    background-color: rgb(77, 77, 77);
+}
+#wrap > nav a i{
+    font-size: 2rem;
+    margin-bottom: .4rem;
+}
+
+/* Conteúdo */
+#wrap > main{
+ 
+    display: flex;
+    margin: 0 .5rem;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+#wrap > main > article{
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: .4rem;
+    border: 1px dotted;
+    flex-grow: 1;
+    
+}
+#wrap > main > aside{
+    background-color: rgba(255, 241, 203, 0.7);
+    margin-top: .2rem;
+    border-radius: .4rem;
+    border: 1px dotted;
+}
+
+/* Rodapé */
+#wrap> footer{
+    background-color: grey;
+    border: 1px dotted grey;
+    margin: .5rem;
+    border-radius: .5rem;
+    
+}
+.footer-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-top div{
+    color: white;
+    align-items: center;
+}
+.footer-top a{
+    color: #ddd;
+    font-size: 1.5rem;
+    padding: .25rem;
+    transition: 0.2s;
+}
+.footer-top a:hover{
+    background-color: rgb(77, 77, 77);
+    color: white;
+
+}
+.footer-bottom{
+    display: flex;
+    color: #ddd;
+    justify-content: space-around;
+    
+}
+.footer-bottom ul{
+    list-style: none;
+    line-height: 1.7;
+    padding: 0;
+}
+.footer-bottom li.fb:hover{
+    background-color: #4267B2;
+    color: white;
+    transition: 0.2s;
+    border-radius: .4rem;
+}
+.footer-bottom a{
+    padding-left: .25rem;
+}
+
+.footer-bottom li.tw:hover{
+    background-color: #1DA1F2;
+    color: white;
+    transition: 0.2s;
+    border-radius: 0.4rem;
+}
+
+.footer-bottom li.git:hover{
+    background-color: #6e5494;
+    color: white;
+    transition: 0.2s;
+    border-radius: 0.4rem;
+}
+
+/* Em larguras maiores (mobile friendly). */
+@media screen and (min-width: 575px){
+    
 }
