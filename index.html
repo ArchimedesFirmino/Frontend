@@ -8,6 +8,9 @@
     <meta name="author" description="Archimedes Santos Firmino &lt;archimedessfirmino@gmail.com&gt;">
     <meta name="keywords" description="JavaScript, HTML5, CSS3, semântica, mobile-first, responsividade, api">
     <link rel="stylesheet" href="/index.css">
+    <!-- Carrega o CSS específico de cada página. -->
+    <link rel="stylesheet" href="" id="pageCSS">
+
     <link rel="shortcut icon" href="img/favicon.ico">
     <title>DasAuto</title>
 </head>
@@ -20,10 +23,10 @@
 
         <!-- Cabeçalho -->
         <header>
-            <a href="/">
-                <a href="/" class="logotipo"><i class="fa-solid fa-screwdriver-wrench"></i></a>
+            <a href="home">
+                <a href="home" class="logotipo"><i class="fa-solid fa-screwdriver-wrench"></i></a>
             </a>
-            <h1>
+            <h1 id="h1">
                 DasAuto
                 <small>Tudo sobre mecânica.</small>
             </h1>
@@ -31,18 +34,18 @@
 
         <!-- Menu -->
         <nav>
-            <a href="/"><i class="fa-solid fa-house fa-fw"></i>
+            <a href="home"><i class="fa-solid fa-house fa-fw"></i>
                 <span>Início</span>
             </a>
 
-            <a href="/contacts"><i class="fa-solid fa-headset fa-fw"></i>
+            <a href="contacts"><i class="fa-solid fa-headset fa-fw"></i>
                 <span>Contatos</span>
             </a>
 
-            <a href="/about"><i class="fa-solid fa-info"></i>
+            <a href="about"><i class="fa-solid fa-info"></i>
                 <span>Sobre</span>
             </a>
-            <a href="/login"><i class="fa-solid fa-right-to-bracket"></i>
+            <a href="login"><i class="fa-solid fa-right-to-bracket"></i>
                 <span>Login</span>
             </a>
         </nav>
@@ -56,7 +59,7 @@
         <footer>
             <!-- Primeira linha -->
             <div class="footer-top">
-                <a href="/">
+                <a href="home">
                     <i class="fa-solid fa-house fa-fw"></i>
                 </a>
                 <div>&copy; 2023 Joca da Silva</div>
@@ -102,19 +105,19 @@
                     <h4>Links rápidos:</h4>
                     <ul>
                         <li>
-                            <a href="/about">
+                            <a href="about">
                                 <i class="fa-solid fa-file-code fa-fw"></i>
                                 <span>Sobre o site</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/about">
+                            <a href="about">
                                 <i class="fa-solid fa-laptop-code fa-fw"></i>
                                 <span>Quem somos</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/about">
+                            <a href="about">
                                 <i class="fa-solid fa-user-lock fa-fw"></i>
                                 <span>Privacidade</span>
                             </a>

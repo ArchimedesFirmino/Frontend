@@ -156,7 +156,7 @@ html, body{
 /* Rodapé */
 #wrap> footer{
     background-color: rgb(70,70,70);
-    border: 1px dotted grey;
+    border: 1px solid grey;
     margin: .5rem;
     border-radius: .5rem;
     
@@ -165,6 +165,8 @@ html, body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid grey;
+    border-radius: .2rem;
 }
 .footer-top div{
     color: white;
