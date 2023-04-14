@@ -61,3 +61,37 @@
     background-image: linear-gradient(rgb(172, 172, 172), rgb(76, 76, 76));
     pointer-events: none;
 }
+
+nav.contacts{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+}
+
+nav.contacts a{
+    font-size: 4rem;
+}
+
+nav.contacts i[class ~="fa-whatsapp"]:hover{
+    background-color: #128c7e;
+    color: white;
+    transition: 0.2s;
+    border-radius: 0.8rem;
+}
+
+nav.contacts i[class ~="fa-facebook"]:hover{
+    background-color:  #4267B2;
+    color: white;
+    transition: 0.2s;
+    border-radius: 0.8rem;
+}
+
+
+nav.contacts i[class ~="fa-github"]:hover{
+    background-color:  #6e5494;
+    color: white;
+    transition: 0.2s;
+    border-radius: 0.8rem;
+}
