@@ -95,3 +95,15 @@ nav.contacts i[class ~="fa-github"]:hover{
     transition: 0.2s;
     border-radius: 0.8rem;
 }
+
+
+nav.contacts i[class ~="fa-envelope"]:hover{
+    background-color:  #dd4b39;
+    color: white;
+    transition: 0.2s;
+    border-radius: 0.8rem;
+}
+
+nav.contacts i{
+    padding: 0.4rem;
+    }
