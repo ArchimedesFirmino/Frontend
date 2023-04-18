@@ -8,6 +8,11 @@
  * JavaScript do aplicativo.
  * Depende de "jQuery" (https://jquery.com/).
  *
+ * 
+ * Comando para ordenar todos os articles em ordem descendente de data
+ * http://localhost:3000/articles?_sort=date&_order=desc
+ * 
+ * 
  * OBS 1: Este é o aplicativo principal, para que o tema (template) do site
  * opere. Posteriormente, quando necessário, cada página (conteúdo) terá seu
  * próprio JavaScript, assim, somente o JavaScript necessário será carregado.
@@ -28,7 +33,8 @@
 var app = {
     siteName: 'DasAuto',
     siteSlogan: 'Tudo sobre mecânica',
-    apiContactsURL: 'http://localhost:3000/contacts'
+    apiContactsURL: 'http://localhost:3000/contacts',
+    apiArticlesURL: 'http://localhost:3000/articles?_sort=date&_order=desc'
 }
 
 /**
