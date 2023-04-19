@@ -1,1 +1,45 @@
 /* Folhas de estilo de home*/
+.art-item img{
+    border-radius: .2rem .2rem 0 0;
+    width: 100%;
+}
+
+.art-item {
+    border: 1px solid black;
+    border-radius: .2rem;
+    margin-bottom: .2rem;
+    cursor: pointer;
+    background-color: rgba(224, 224, 224, 0.8);
+}
+
+.art-item:hover{
+    background-color: rgb(202, 202, 202);
+    transition: 0.5s;
+}
+
+.art-item h3 , p{
+    padding: .25rem;
+}
+
+@media screen and (min-width: 575px) {
+    #artList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .art-item{
+        width: 48%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .art-item{
+        width: 100%;
+        display: flex;
+    }
+    .art-item img{
+        width: 100px;
+        height: auto;
+        border-radius: .1rem 0 0 .1rem;
+    }
+}
