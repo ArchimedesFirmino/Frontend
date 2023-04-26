@@ -152,15 +152,26 @@ INSERT INTO articles (
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ultrices leo. Vivamus in suscipit quam. Sed posuere erat non massa vehicula laoreet.'
 );
 
--- Atividade
--- 1) Insira pelo menos mais 2 artigos.
--- 2) Insira pelo menos 2 comentários de usuários diferentes para um mesmo artigo.
-
-INSERT INTO comments (
-    cmt_author,
-    cmt_article,
-    cmt_comment
+INSERT INTO articles (
+    art_author,
+    art_title,
+    art_thumbnail,
+    art_resume,
+    art_content
 ) VALUES (
-    
-)
+    '1',
+    'Mais um artigo para o blog',
+    'https://picsum.photos/199',
+    'Resumo do artigo que vai aparecer no blog',
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ultrices leo. Vivamus in suscipit quam. Sed posuere erat non massa vehicula laoreet.'
+),  (  
+    '1',
+    'Próximo artigo para o blog',
+    'https://picsum.photos/198',
+    'Resumo do artigo que vai aparecer no blog',
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ultrices leo. Vivamus in suscipit quam. Sed posuere erat non massa vehicula laoreet.'
+);
 
+INSERT INTO comments (cmt_author, cmt_article, cmt_comment ) VALUES
+( '2', '2', 'Comentando um comentário comentado.'),
+( '3', '2', 'Comentando um comentário do hermenildo.')
