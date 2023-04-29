@@ -66,29 +66,26 @@ $(document).ready(myApp)
  **/
 function myApp() {
 
+    // Monitora status de autenticação do usuário
+    firebase.auth().onAuthStateChanged((user) => {
 
-        // Variável com dados do usuário logado.
-        var user;
+        // Se o usuário está logado...
+        if (user) {
 
-        // Se tem usuário logado.
-        if (sessionStorage.userData) {
-    
-            // Dados do usuário logado
-            user = JSON.parse(sessionStorage.userData)
-            $('#navUser').html(`
-                <img src="${user.photo}" alt="${user.name}" referrerpolicy="no-referrer">
-                <span>Perfil</span>
-            `)
+            // Mostra a imagem do usuário e o link de perfil.
+            $('#navUser').html(`<img src="${user.photoURL}" alt="${user.displayName}" referrerpolicy="no-referrer"><span>Perfil</span>`)
             $('#navUser').attr('href', 'profile')
+
+            // Se não tem logados...
         } else {
-            $('#navUser').html(`
-                <i class="fa-solid fa-user fa-fw"></i>
-                <span>Login</span>
-            `)
+
+            // Mostra o ícone de usuário e o link de login.
+            $('#navUser').html(`<i class="fa-solid fa-user fa-fw"></i><span>Login</span>`)
             $('#navUser').attr('href', 'login')
         }
-    
-      /**
+    });
+
+    /**
      * IMPORTANTE!
      * Para que o roteamento funcione corretamente no "live server", é 
      * necessário que erros 404 abram a página "404.html".
@@ -116,6 +113,13 @@ function myApp() {
      **/
     $(document).on('click', 'a', routerLink)
 
+    $('')
+
+}
+
+// Faz login do usuário usando o Firebase Authentication
+function fbLogin() {
+    firebase.auth().signInWithPopup(provider)
 }
 
 /**
@@ -159,7 +163,15 @@ function routerLink() {
         // Devolve o controle para o HTML.
         return true
 
-    /**
+     /**
+     * Se clicou no link para 'login', executa a função de login.
+     */
+     if (href == 'login') {
+        fbLogin()
+        return false
+    }
+    
+     /**
      * Carrega a rota solicitada.
      **/
     loadpage(href)

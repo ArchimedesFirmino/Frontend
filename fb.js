@@ -12,64 +12,12 @@ const firebaseConfig = {
   appId: "1:482807980306:web:0401641f775699d85493cb"
 };
 
-// Importa o "core" do Firebase.
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+// Incializa o Firebase
+firebase.initializeApp(firebaseConfig);
 
-// Importa o Authentication do Firebase.
-import {getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 
-// Initializa o Firebase.
-const fbapp = initializeApp(firebaseConfig);
+// Initialize Firebase Authentication and get a reference to the service
+const auth = firebase.auth();
 
-// Inicializa o mecanismo de autenticação.
-const auth = getAuth();
-
-// Especifica o provedor de autenticação.
-const provider = new GoogleAuthProvider();
-
-//signInWithPopup(auth, provider)
-
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        sessionStorage.userData = JSON.stringify({
-            name: user.displayName,
-            email: user.email,
-            photo: user.photoURL,
-            uid: user.uid
-        })
-    } else {
-        delete sessionStorage.userData
-    }
-});
-
-// Executa a jQuery quando o documento estiver pronto.
-$(document).ready(myFirebase)
-
-function myFirebase() {
-
-    // Detecta cliques no botão de login.
-    $('#navUser').click(login)
-}
-
-// Função que processa cliques no botão login/profile.
-function login() {
-
-    // Se não está logado...
-    if (!sessionStorage.userData) {
-
-        // Faz login usando popup.
-        signInWithPopup(auth, provider)
-
-            // Se logou corretamente.
-            .then(() => {
-
-                // Redireciona para a 'home'.
-                location.href = '/home'
-            })
-
-        // Se está logado..
-    } else
-
-        // Redireciona para 'profile'.
-        location.href = '/profile'
-}
+//Define o provedor de autenticação
+var provider = new firebase.auth.GoogleAuthProvider();
