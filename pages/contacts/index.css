@@ -62,48 +62,38 @@
     pointer-events: none;
 }
 
-nav.contacts{
+nav.contacts {
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
 }
 
-nav.contacts a{
+nav.contacts a {
     font-size: 4rem;
 }
 
-nav.contacts i[class ~="fa-whatsapp"]:hover{
-    background-color: #128c7e;
-    color: white;
-    transition: 0.2s;
-    border-radius: 0.8rem;
+nav.contacts i[class~=fa-square-whatsapp] {
+    color: #128c7e;
 }
 
-nav.contacts i[class ~="fa-facebook"]:hover{
-    background-color:  #4267B2;
-    color: white;
-    transition: 0.2s;
-    border-radius: 0.8rem;
+nav.contacts i[class~=fa-square-phone] {
+    color: #666;
 }
 
-
-nav.contacts i[class ~="fa-github"]:hover{
-    background-color:  #6e5494;
-    color: white;
-    transition: 0.2s;
-    border-radius: 0.8rem;
+nav.contacts i[class~=fa-square-envelope] {
+    color: orangered;
 }
 
-
-nav.contacts i[class ~="fa-envelope"]:hover{
-    background-color:  #dd4b39;
-    color: white;
-    transition: 0.2s;
-    border-radius: 0.8rem;
+nav.contacts i[class~=fa-square-facebook] {
+    color: #1877f2;
 }
 
-nav.contacts i{
-    padding: 0.4rem;
-    }
+nav.contacts i[class~=fa-square-github] {
+    color: #6e5494;
+}
+
+nav.contacts i[class~=fa-square-instagram] {
+    color: #405de6;
+}

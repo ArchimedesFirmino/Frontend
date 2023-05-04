@@ -8,11 +8,6 @@
  * JavaScript do aplicativo.
  * Depende de "jQuery" (https://jquery.com/).
  *
- * 
- * Comando para ordenar todos os articles em ordem descendente de data
- * http://localhost:3000/articles?_sort=date&_order=desc
- * 
- * 
  * OBS 1: Este é o aplicativo principal, para que o tema (template) do site
  * opere. Posteriormente, quando necessário, cada página (conteúdo) terá seu
  * próprio JavaScript, assim, somente o JavaScript necessário será carregado.
@@ -30,15 +25,16 @@
  * Algumas configurações do aplicativo.
  * Dica: você pode acrescentar novas configurações aqui se precisar.
  **/
-
 var apiBaseURL = 'http://localhost:3000/'
 var app = {
     siteName: 'FrontEndeiros',
-    siteSlogan: 'Programando para o futuro',    
+    siteSlogan: 'Programando para o futuro',
     apiContactsURL: apiBaseURL + 'contacts',
-    apiArticlesURL: apiBaseURL + 'articles?_sort=date&_order=desc',
+    apiArticlesURL: apiBaseURL + 'articles?_sort=date&_order=desc&status=on',
     apiArticleURL: apiBaseURL + 'articles/',
-    apiUserURL: apiBaseURL + 'users/'
+    apiUserURL: apiBaseURL + 'users/',
+    apiCommentURL: apiBaseURL + 'comments?_sort=date&_order=desc&status=on',
+    apiCommentPostURL: apiBaseURL + 'comments'
 }
 
 /**
@@ -92,17 +88,17 @@ function myApp() {
      **/
 
     // Verifica se o 'localStorage' contém uma rota.
-    if (localStorage.path == undefined) {
+    if (sessionStorage.path == undefined) {
 
         // Se não contém, aponta a rota 'home'.
-        localStorage.path = 'home'
+        sessionStorage.path = 'home'
     }
 
     // Armazena a rota obtida em 'path'.        
-    var path = localStorage.path
+    var path = sessionStorage.path
 
     // Apaga o 'localStorage', liberando o recurso.
-    delete localStorage.path
+    delete sessionStorage.path
 
     // Carrega a página solicitada pela rota.
     loadpage(path)
@@ -113,13 +109,14 @@ function myApp() {
      **/
     $(document).on('click', 'a', routerLink)
 
-    $('')
-
 }
 
 // Faz login do usuário usando o Firebase Authentication
 function fbLogin() {
     firebase.auth().signInWithPopup(provider)
+        .then(() => {
+            loadpage('home')
+        })
 }
 
 /**
@@ -163,15 +160,15 @@ function routerLink() {
         // Devolve o controle para o HTML.
         return true
 
-     /**
+    /**
      * Se clicou no link para 'login', executa a função de login.
      */
-     if (href == 'login') {
+    if (href == 'login') {
         fbLogin()
         return false
     }
-    
-     /**
+
+    /**
      * Carrega a rota solicitada.
      **/
     loadpage(href)
@@ -275,6 +272,13 @@ function loadpage(page, updateURL = true) {
 
         })
 
+        // Se ocorreu falha em carregar o documento...
+        .catch(() => {
+
+            // Carrega a página de erro 404 sem atualizar a rota.
+            loadpage('e404', false)
+        })
+
     /**
     * Rola a tela para o início, útil para links no final da página.
     * Referências:
@@ -287,8 +291,7 @@ function loadpage(page, updateURL = true) {
      * Referências:
      *  • https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
      **/
-    if(updateURL)
-         window.history.pushState({}, '', page);
+    if (updateURL) window.history.pushState({}, '', page);
 
 }
 
@@ -329,6 +332,7 @@ function changeTitle(title = '') {
     $('title').html(pageTitle)
 
 }
+
 /**
  * Calcula a idade com base na data (system date).
  **/
@@ -349,8 +353,8 @@ function getAge(sysDate) {
     var age = tYear - pYear
 
     // Verificar o mês e o dia.
-    if(pMonth > tMonth) age --
-    else if(pMonth == tMonth && pDay > tDay) age --
+    if (pMonth > tMonth) age--
+    else if (pMonth == tMonth && pDay > tDay) age--
 
     // Retorna a idade.
     return age
