@@ -15,11 +15,7 @@ function myHome() {
      **/
     changeTitle()
 
-    /**
-     * Quando clicar em um artigo.
-     **/
-    $(document).on('click', '.art-item', loadArticle)
-
+ 
     var articleList = '';
 
     /**
@@ -54,14 +50,3 @@ function myHome() {
 
 }
 
-/**
- * Carrega o artigo completo.
- */
-function loadArticle() {
-
-    // Obtém o id do artigo e armazena na sessão.
-    sessionStorage.article = $(this).attr('data-id')
-
-    // Carrega a página que exibe artigos → view.
-    loadpage('view')
-}

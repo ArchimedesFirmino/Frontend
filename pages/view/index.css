@@ -77,6 +77,16 @@
     margin: .75rem 1rem 1.5rem 1rem;
 }
 
+.art-item {
+    color: steelblue;
+    cursor: pointer;
+}
+
+.art-item:hover {
+    color: orangered;
+    text-decoration: underline;
+}
+
 @media screen and (min-width: 480px) {
 
     .dateAuthor {
