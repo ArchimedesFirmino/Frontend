@@ -1,35 +1,33 @@
 $(document).ready(myHome)
 
 /**
- * URL para obter todos os artigos ordenados pela data:
- * http://localhost:3000/articles?_sort=date&_order=desc
+ * IMPORTANTE!
+ * URL para obter todos os artigos ordenados pela data e com status ativo:
+ * http://localhost:3000/articles?_sort=date&_order=desc&status=on
+ * \---------+---------/
+ *           |
+ *           +--> URL da API → variável 'app.apiBaseURL' em '/index.js'
  **/
 
 /**
  * Função principal da página "home".
  **/
 function myHome() {
-
-    /**
-     * Altera o título da página quando 'home' for acessada.
-     **/
+    //Muda o título da página na aba.
     changeTitle()
-
- 
+    //Cria uma variável vazia para receber a lista de artigos armazenados em "articles".
     var articleList = '';
-
-    /**
-     * Obtém todos os artigos do site, orneados pela data, descrecente.
-     **/
-    $.get(app.apiArticlesURL)
-
-        // Armazena os artigos obtidos em "data".
+    //Faz um método GET para recolher todos os artigos ordenados pela data, em ordem decrescente e com status "on".
+    $.get(app.apiBaseURL + 'articles', {
+        _sort: 'date',
+        _order: 'desc',
+        status: 'on'
+    })
+        //Armazena os artigos coletados em "data"
         .done((data) => {
-
-            // Extrai cada um dos artigos para o objeto "art".
+            //Para cada artigo armazenado...
             data.forEach((art) => {
-
-                // Gera conteúdo HTML com a listagem de artigos.
+                //Adiciona os dados do artigo selecionado a uma estrutura html dentro da variável criada acima.
                 articleList += `
                     <div class="art-item" data-id="${art.id}">
                         <img src="${art.thumbnail}" alt="${art.title}">
@@ -40,13 +38,12 @@ function myHome() {
                     </div>                    
                 `
             })
-
-            // Exibe a lista de artigos na 'home'.
+            // Armazena a varíavel com os artigos estruturados dentro da div com o id artList no html de home.
             $('#artList').html(articleList)
         })
+        //Caso a requisição falhe, gera mensagem de erro.
         .fail((error) => {
-            $('#artList').html('Não encontramos nenhum artigo!!!')
+            $('#artList').html('<p class="center">Oooops! Não encontramos nenhum artigo...</p>')
         })
 
 }
-
