@@ -58,6 +58,10 @@ function myApp() {
 
     onstorage = popUpOpen
 
+    // Aviso de cookies → Exibir aviso.
+    if (cookie.get('acceptCookies') == 'on') $('#aboutCookies').hide()
+    else $('#aboutCookies').show()
+
     // Monitora status de autenticação do usuário
     firebase.auth().onAuthStateChanged((user) => {
 
@@ -108,7 +112,22 @@ function myApp() {
     /**
      * Quando clicar em um artigo.
      **/
-    $(document).on('click', '.art-item', loadArticle)
+    $(document).on('click', '.article', loadArticle)
+
+    /**
+     * Aviso de cookies → Políticas de privacidade.
+     **/
+    $('#policies').click(() => {
+        loadpage('policies')
+    })
+
+    /**
+     * Aviso de cookies → Aceito.
+     **/
+    $('#accept').click(() => {
+        cookie.set('acceptCookies', 'on', 365)
+        $('#aboutCookies').hide()
+    })
 
 }
 
@@ -365,31 +384,27 @@ function stripHtml(html) {
     let doc = new DOMParser().parseFromString(html, 'text/html');
     return doc.body.textContent || "";
 }
-//Cria um popup
+
 function popUp(params) {
-    //Adiciona o popup na página e esconde.
     const x = window.open('', 'popupWindow', 'width=1,height=1,left=10000');
-    //Armazena o popup no armazenamento local, sendo necessário converter o conteúdo para string.
     x.localStorage.setItem('popUp', JSON.stringify(params));
-    //Fecha o popup.
     x.close()
 }
 
 function popUpOpen() {
 
     if (localStorage.popUp) {
-        //O popup armazenado é chamado novamente e convertido para JSON novamente.
+
         const pData = JSON.parse(localStorage.popUp)
-        //Cria uma varíavel que irá armazenar o estilo do popup.
         var pStyle = ''
-        //Dependendo da situação, ele irá exibir um tipo diferente de mensagem, alterando o estilo.
+
         switch (pData.type) {
             case 'error': pStyle = 'background-color: #f00; color: #fff'; break
             case 'alert': pStyle = 'background-color: #ff0; color: #000'; break
             case 'success': pStyle = 'background-color: #0f0; color: #000'; break
             default: pStyle = 'background-color: #fff; color: #000'
         }
-        //A função prepend faz o popup aparecer antes de qualquer conteúdo na página.
+
         $('body').prepend(`
         <div id="popup">
             <div class="popup-body" style="${pStyle}">
@@ -398,13 +413,13 @@ function popUpOpen() {
             </div>
         </div>
         `)
-        //Função que fecha o popup, seja por tempo na tela (3.0 segundos) ou por clicar no ícone.
+
         $('.popup-close').click(popUpClose)
         setTimeout(popUpClose, parseInt(pData.time) || 3000)
 
     }
 }
-//Fecha o popup ao clicar no icone.
+
 function popUpClose() {
     delete localStorage.popUp
     $('#popup').remove()
@@ -431,4 +446,41 @@ const myDate = {
         return today.toISOString().replace('T', ' ').split('.')[0]
     }
 
+}
+
+String.prototype.truncate = String.prototype.truncate ||
+    function (n, useWordBoundary) {
+        if (this.length <= n) { return this; }
+        const subString = this.slice(0, n - 1);
+        return (useWordBoundary
+            ? subString.slice(0, subString.lastIndexOf(" "))
+            : subString) + "&hellip;";
+    };
+
+Object.defineProperty(String.prototype, 'capitalize', {
+    value: function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    },
+    enumerable: false
+});
+
+const cookie = {
+    set: (cname, cvalue, exdays) => {
+        const d = new Date()
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
+        let expires = 'expires=' + d.toUTCString()
+        document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/'
+    },
+
+    get: (cname) => {
+        let name = cname + '='
+        let decodedCookie = decodeURIComponent(document.cookie)
+        let ca = decodedCookie.split(';')
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i]
+            while (c.charAt(0) == ' ') c = c.substring(1)
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length)
+        }
+        return ''
+    }
 }
