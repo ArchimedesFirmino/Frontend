@@ -133,10 +133,10 @@ function myApp() {
 
 // Faz login do usuário usando o Firebase Authentication
 function fbLogin() {
-    firebase.auth().signInWithPopup(provider)
+    firebase.auth().signInWithRedirect (provider)
         .then((user) => {
             popUp({ type: 'success', text: `Olá ${user.user.displayName}!` })
-            loadpage(location.pathname.split('/')[1])
+            loadpage(location.pathname.split('/')[2])
         })
         .catch((error) => {
             try {
@@ -182,12 +182,12 @@ function routerLink() {
         href.substring(0, 7) == 'http://' ||
         href.substring(0, 8) == 'https://' ||
         href.substring(0, 4) == 'tel:' ||
-        href.substring(0, 7) == 'mailto:' ||
-        href.substring(0, 1) == '#'
+        href.substring(0, 7) == 'mailto:' 
     )
         // Devolve o controle para o HTML.
         return true
 
+    if ( href.substring(0, 1) == '#') {window.scrollTo(0, 0)}
     /**
      * Se clicou no link para 'login', executa a função de login.
      */
